@@ -260,4 +260,137 @@ function countLetterOccurrences(str) {
 
 //console.log(countLetterOccurrences("Hello, World!"));
 
+/*18)Write a function for searching JavaScript arrays with a binary search. 
+Note: A binary search searches by splitting an array into smaller and smaller chunks until it finds
+the desired value*/
+
+function binarySearch(arr, target) {
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left <= right) {
+        const middle = Math.floor((left + right) / 2);
+
+        if (arr[middle] === target) {
+            return middle;
+        } 
+
+        if (arr[middle] > target) {
+            right = middle - 1;
+        } else {
+            left = middle + 1;
+        }
+    }
+
+    return -1;
+}
+
+//console.log(binarySearch([1, 3, 5, 7, 9, 11, 13, 15], 7)); // Output: 3
+
+
+/*19)Write a JavaScript function that returns array elements larger than a number*/
+
+function filterLargerThan(arr, number) {
+    return arr.filter(element => element > number);
+}
+
+//console.log(filterLargerThan([1, 5, 8, 12, 20], 10)); // Output: [12, 20]
+
+
+
+/*20)Write a JavaScript function that generates a string id (specified length) of random characters.
+Sample   character   list:
+"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"*/
+
+function generateRandomId(length) {
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = '';
+    const charactersLength = characters.length;
+
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charactersLength);
+        result += characters[randomIndex];
+    }
+
+    return result;
+}
+
+//console.log(generateRandomId(10));
+
+/*21) Get All Possible Subsets with a Fixed Length */
+function getSubsets(array, length) {
+    const result = [];
+
+    function generateSubset(start, subset) {
+        if (subset.length === length) {
+            result.push([...subset]);
+            return;
+        }
+
+        for (let i = start; i < array.length; i++) {
+            subset.push(array[i]);
+            generateSubset(i + 1, subset);
+            subset.pop();
+        }
+    }
+
+    generateSubset(0, []);
+    return result;
+}
+
+//const array = [1, 2, 3];
+//const subsetLength = 2;
+//console.log(getSubsets(array, subsetLength));
+
+/*22) Count Occurrences of a Letter in a String */
+function countOccurrences(str, letter) {
+    return Array.from(str).filter(char => char === letter).length;
+}
+
+//console.log(countOccurrences('microsoft.com', 'o'));
+
+/*23) Find the First Non-Repeated Character */
+
+function firstNonRepeatedCharacter(str) {
+    const charCount = {};
+    
+    for (const char of str) {
+        charCount[char] = (charCount[char] || 0) + 1;
+    }
+    
+    for (const char of str) {
+        if (charCount[char] === 1) {
+            return char;
+        }
+    }
+    
+    return null;
+}
+
+//console.log(firstNonRepeatedCharacter('abacddbec'));
+
+
+/*24)  Apply Bubble Sort Algorithm */
+function bubbleSort(arr) {
+    let n = arr.length;
+    let swapped;
+
+    do {
+        swapped = false;
+        for (let i = 0; i < n - 1; i++) {
+            if (arr[i] < arr[i + 1]) { // For descending order
+                [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]];
+                swapped = true;
+            }
+        }
+        n--; // Reduce the range for optimization
+    } while (swapped);
+
+    return arr;
+}
+
+// Example usage:
+//const array = [12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213];
+//console.log(bubbleSort(array)); // Output: [3223, 546, 455, 345, 234, 213, 122, 98, 84, 64, 23, 12, 9, 4, 1]
+
 
