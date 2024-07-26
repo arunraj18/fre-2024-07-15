@@ -9,11 +9,11 @@
 <body>
     <div id="header">
         <div id="title">Welcome to Whack-a-Mole</div>
-        <div id="score">Let's Go, your total score is 0</div>
+        <div id="score">Let's Go, your total score is <span id="score-value">0</span></div>
         <button id="start-button">Start Game!</button>
         <div id="timer">
             <div>Time Left</div>
-            <div>0</div>
+            <div id="time-left">0</div>
         </div>
     </div>
     <div id="game-board">
@@ -30,5 +30,8 @@
         <div class="block" id="11"></div>
         <div class="block" id="12"></div>
     </div>
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
 </body>
 </html>
