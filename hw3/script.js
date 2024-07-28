@@ -389,8 +389,105 @@ function bubbleSort(arr) {
     return arr;
 }
 
-// Example usage:
-//const array = [12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213];
-//console.log(bubbleSort(array)); // Output: [3223, 546, 455, 345, 234, 213, 122, 98, 84, 64, 23, 12, 9, 4, 1]
+//25) JavaScript function to return the longest country name:
+
+function longestCountryName(countries) {
+    if (!countries || countries.length === 0) return null;
+
+    return countries.reduce((longest, country) => 
+        country.length > longest.length ? country : longest, "");
+}
+
+//console.log(longestCountryName(["Australia", "Germany", "United States of America"]));
+// Expected output: "United States of America"
+
+//26) JavaScript function to find the longest substring without repeating characters:
+
+function longestUniqueSubstring(str) {
+    let seen = new Map();
+    let start = 0;
+    let maxLength = 0;
+    let startOfMax = 0;
+
+    for (let end = 0; end < str.length; end++) {
+        if (seen.has(str[end])) {
+            start = Math.max(seen.get(str[end]) + 1, start);
+        }
+        seen.set(str[end], end);
+        if (end - start + 1 > maxLength) {
+            maxLength = end - start + 1;
+            startOfMax = start;
+        }
+    }
+
+    return str.substring(startOfMax, startOfMax + maxLength);
+}
+
+//console.log(longestUniqueSubstring("abcabcbb"));
+// Expected output: "abc"
+
+//27) JavaScript function to return the longest palindrome in a given string:
+
+function longestPalindrome(s) {
+    if (s.length < 1) return "";
+
+    let start = 0, end = 0;
+
+    function expandAroundCenter(s, left, right) {
+        while (left >= 0 && right < s.length && s[left] === s[right]) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    }
+
+    for (let i = 0; i < s.length; i++) {
+        let len1 = expandAroundCenter(s, i, i);
+        let len2 = expandAroundCenter(s, i, i + 1);
+        let len = Math.max(len1, len2);
+
+        if (len > end - start) {
+            start = i - Math.floor((len - 1) / 2);
+            end = i + Math.floor(len / 2);
+        }
+    }
+
+    return s.substring(start, end + 1);
+}
+
+//console.log(longestPalindrome("bananas"));
+// Expected output: "anana"
+
+//28) JavaScript program to pass a function as a parameter:
+
+function greet(name) {
+    return `Hello, ${name}!`;
+}
+
+function processUserInput(callback) {
+    let name = prompt("Please enter your name.");
+    alert(callback(name));
+}
+
+//processUserInput(greet);
+
+//29) JavaScript function to get the function name:
+
+function getFunctionName(fn) {
+    return fn.name;
+}
+
+function exampleFunction() {
+    console.log("This is an example function.");
+}
+
+//console.log(getFunctionName(exampleFunction));
+// Expected output: "exampleFunction"
+
+
+
+
+
+
 
 
