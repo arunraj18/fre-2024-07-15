@@ -25,5 +25,9 @@ const model = {
             clearInterval(this.moleInterval);
             this.moleInterval = null;
         }
+        if (this.snakeInterval) {
+            clearInterval(this.snakeInterval);
+            this.snakeInterval = null;
+        }
     }
 };

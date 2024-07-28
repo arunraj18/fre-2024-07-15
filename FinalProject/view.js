@@ -23,9 +23,15 @@ const view = {
 
     updateBlock: function(id, status) {
         const blockElement = document.getElementById(`block-${id}`);
-        if (status) {
+        if (status === 'mole') {
             blockElement.innerHTML = '<img src="mole.jpg" alt="Mole" style="width: 100%; height: 100%;">';
-        } else {
+        } 
+        else if (status === 'snake') {
+
+            blockElement.innerHTML = '<img src="snake.jpg" alt="Snake" style="width: 100%; height: 100%;">';
+
+        }
+        else {
             blockElement.innerHTML = '';
         }
     },
@@ -36,5 +42,14 @@ const view = {
 
     updateTimeLeft: function(timeLeft) {
         this.timeLeftElement.textContent = timeLeft;
+    },
+    showAllSnakes: function() {
+
+        model.gameBoard.forEach(block => {
+
+            this.updateBlock(block.id, 'snake');
+
+        });
+
     }
 };
